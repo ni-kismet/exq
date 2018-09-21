@@ -58,11 +58,10 @@ defmodule Exq.Support.Opts do
   end
 
   def connection_opts(opts \\ []) do
-    reconnect_on_sleep = opts[:reconnect_on_sleep] || Config.get(:reconnect_on_sleep)
-    timeout = opts[:redis_timeout] || Config.get(:redis_timeout)
+    ssl = opts[:ssl] || false
     socket_opts = opts[:socket_opts] || Config.get(:socket_opts) || []
 
-    [backoff: reconnect_on_sleep, timeout: timeout, name: opts[:redis], socket_opts: socket_opts]
+    [ssl: ssl, name: opts[:redis], socket_opts: socket_opts]
   end
 
   defp server_opts(:default, opts) do
