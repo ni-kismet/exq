@@ -58,7 +58,7 @@ defmodule Exq.Support.Opts do
   end
 
   def connection_opts(opts \\ []) do
-    ssl = opts[:ssl] || false
+    ssl = opts[:ssl] || Config.get(:ssl) || false
     socket_opts = opts[:socket_opts] || Config.get(:socket_opts) || []
 
     [ssl: ssl, name: opts[:redis], socket_opts: socket_opts]
